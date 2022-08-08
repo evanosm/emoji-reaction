@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+
+$font: 'Montserrat', sans-serif;
+$dark: #29282b;
+$light: #e4e9ea;
+
+$g1: linear-gradient(45deg, #ff2e32 0%, #ff895b 100%);
+$g2: linear-gradient(45deg, #f95523 0%, #ff954e 100%);
+$g3: linear-gradient(45deg, #f97923 0%, #ffb84e 100%);
+$g4: linear-gradient(45deg, #dd9b0d 0%, #ffcd8c 100%);
+$g5: linear-gradient(45deg, #f9d423 0%, #fbff1c 100%);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $light;
+    font-family: $font;
+}
+
+.wrapper {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: $dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        font-weight: 900;
+    }
+
+    .sub-title {
+        position: absolute;
+        top: 4rem;
+        left: 2rem;
+        font-weight: 100;
+
+        span {
+            font-weight: 400;
+        }
+    }
+
+    .description {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        font-weight: 100;
+    }
+
+    .card {
+        width: 450px;
+        height: 300px;
+        background: $light;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            z-index: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: $light;
+            opacity: 0.5;
+            border-radius: 20px;
+            filter: blur(2px);
+            transform: rotate(-5deg);
+        }
+
+        .emoji-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            position: relative;
+            z-index: 1;
+
+            .item {
+                width: 50px;
+                height: 50px;
+                background: $g1;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 1rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                position: relative;
+                z-index: 2;
+
+                &:hover {
+                    transform: scale(1.1) rotate(5deg);
+                }
+
+                &:active {
+                    transform: scale(0.9);
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        z-index: 1;
+                        width: 100%;
+                        height: 100%;
+                        background: $dark;
+                        animation: click .2s ease-in-out forwards;
+                    }
+                }
+
+                .face {
+                    width: 25px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    position: relative;
+                    flex-direction: column;
+
+                    .eyes {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        z-index: 1;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .eye {
+                            width: 10px;
+                            height: 10px;
+                            background: $dark;
+                            border-radius: 50%;
+                            position: relative;
+                            z-index: 1;
+                        }
+                    }
+
+                    .mouth {
+                        width: 20px;
+                        height: 10px;
+                        position: relative;
+                        z-index: 1;
+                    }
+                }
+
+                &:nth-child(2) {
+                    background: $g2;
+                }
+
+                &:nth-child(3) {
+                    background: $g3;
+                }
+
+                &:nth-child(4) {
+                    background: $g4;
+                }
+
+                &:nth-child(5) {
+                    background: $g5;
+                }
+            }
+        }
+    }
+}
+
+.angry {
+    border-radius: 40px 40px 0px 0px;
+    border : 5px solid $dark;
+    border-bottom: 0px;
+}
+
+.semi-angry {
+    border-top : 5px solid $dark;
+    rotate: -5deg;
+}
+
+.neutral {
+    border-top : 5px solid $dark;
+}
+
+.semi-happy {
+    border-top : 5px solid $dark;
+    rotate: 5deg;
+}
+
+.happy {
+    border-radius: 0px 0px 40px 40px;
+    border : 5px solid $dark;
+    border-top: 0px;
+}
+
+.blink {
+    animation: blink 10s infinite;
+}
+
+.blink2 {
+    animation: blink2 10s infinite;
+}
+
+.blink3 {
+    animation: blink3 5s infinite;
+}
+
+.mouth {
+    animation: mouth 10s infinite;
+}
+
+.mouth2 {
+    animation: mouth2 10s infinite;
+}
+
+.mouth3 {
+    animation: mouth3 5s infinite;
+}
+
+@keyframes blink {
+    0% {
+        transform: scaleY(1);
+    }
+
+    2% {
+        transform: scaleY(0);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(1) translate(5px, 0);
+    }
+
+    52% {
+        transform: scaleY(0) translate(-3px, 0);
+    }
+
+    55% {
+        transform: scaleY(1) translate(-3px, 0);
+    }
+    
+    70% {
+        transform: scaleY(1) translate(7px, -7px);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
+
+@keyframes blink2 {
+    0% {
+        transform: scaleY(1);
+    }
+
+    2% {
+        transform: scaleY(0);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    10% {
+        transform: scaleY(1);
+    }
+
+    12% {
+        transform: scaleY(0);
+    }
+
+    15% {
+        transform: scaleY(1);
+    }
+
+    70% {
+        transform: scaleY(1) translate(0, -5px);
+    }
+
+    72% {
+        transform: scaleY(.5) translate(-3px, -5px);
+    }
+
+    75% {
+        transform: scaleY(1) translate(-3, -5px);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
+
+@keyframes blink3 {
+    0% {
+        transform: scaleY(1);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    7% {
+        transform: scaleY(0);
+    }
+
+    10% {
+        transform: scaleY(1);
+    }
+
+    12% {
+        transform: scaleY(0);
+    }
+
+    15% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
+
+@keyframes click {
+    from {
+        transform: scale(0);
+        opacity: .8;
+        border-radius: 10%;
+    }
+
+    to {
+        transform: scale(2);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+@keyframes mouth {
+    0% {
+        transform: scaleY(1);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(1) translate(5px, 0);
+    }
+
+    52% {
+        transform: scaleY(1) translate(-3px, 0);
+    }
+
+    55% {
+        transform: scaleY(1) translate(-3px, 0);
+    }
+    
+    70% {
+        transform: scaleY(1) translate(7px, -7px);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
+
+@keyframes mouth2 {
+    0% {
+        transform: scaleY(1);
+    }
+
+    2% {
+        transform: scaleY(1);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    10% {
+        transform: scaleY(1);
+    }
+
+    12% {
+        transform: scaleY(1);
+    }
+
+    15% {
+        transform: scaleY(1);
+    }
+
+    70% {
+        transform: scaleY(1) translate(0, -5px);
+    }
+
+    72% {
+        transform: scale(.7) translate(-3px, -5px);
+    }
+
+    75% {
+        transform: scaleY(1) translate(-3, -5px);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
+
+@keyframes mouth3 {
+    0% {
+        transform: scaleY(1);
+    }
+
+    5% {
+        transform: scaleY(1);
+    }
+
+    7% {
+        transform: scaleY(1);
+    }
+
+    10% {
+        transform: scaleY(1);
+    }
+
+    12% {
+        transform: scaleY(1);
+    }
+
+    15% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(1) translate(0, 0);
+    }
+}
